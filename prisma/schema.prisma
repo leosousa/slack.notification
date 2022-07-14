@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int         @id @default(autoincrement())
+  name          String?
+  email         String      @unique
+
+  @@map("user")
+}
+
+model Webhook {
+  id            Int         @id @default(autoincrement())
+  order_number  String
+  data          String
+  sended        Boolean
+  created_at    DateTime    @default(now())
+  order_date    DateTime
+
+  @@map("webhook")
+}
+
+model Config {
+  id            Int         @id @default(autoincrement())
+  name          String      @db.VarChar(50)
+  value         String      @db.VarChar(100)
+  created_at    DateTime    @default(now())
+
+  @@map("config")
+}
+
+model Marketplace {
+  id            Int         @id @default(autoincrement())
+  name          String      @db.VarChar(50)
+  number        String      @db.VarChar(50)
+  url           String      @db.VarChar(200)
+  created_at    DateTime    @default(now())
+
+  @@map("marketplace")
+}

@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.app = void 0;
+const express_1 = require("express");
+const user_routes_1 = require("./user.routes");
+const config_routes_1 = require("./config.routes");
+const marketplace_routes_1 = require("./marketplace.routes");
+const webhook_routes_1 = require("./webhook.routes");
+const app = (0, express_1.Router)();
+exports.app = app;
+app.use('/users', user_routes_1.userRoutes);
+app.use('/configs', config_routes_1.configRoutes);
+app.use('/marketplaces', marketplace_routes_1.marketplaceRoutes);
+app.use('/webhooks', webhook_routes_1.webhookRoutes);

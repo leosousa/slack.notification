@@ -1,0 +1,35 @@
+{
+  "name": "slack-notification",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "api-start": "node ./dist/api.js",
+    "api-dev": "ts-node-dev --transpile-only ./src/api.ts",
+    "cron-start": "node ./dist/cron.js",
+    "cron-dev": "ts-node-dev --transpile-only ./src/cron.ts",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^18.0.3",
+    "@types/node-cron": "^3.0.2",
+    "@types/uuid": "^8.3.4",
+    "prisma": "^4.0.0",
+    "ts-node": "^10.8.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.0.0",
+    "axios": "^0.27.2",
+    "express": "^4.18.1",
+    "fs": "^0.0.1-security",
+    "node-cron": "^3.0.1",
+    "uuid": "^8.3.2"
+  }
+}
