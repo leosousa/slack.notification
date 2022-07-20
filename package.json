@@ -9,7 +9,8 @@
     "api-dev": "ts-node-dev --transpile-only ./src/api.ts",
     "cron-start": "node ./dist/cron.js",
     "cron-dev": "ts-node-dev --transpile-only ./src/cron.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "start": "node ./dist/api.js"
   },
   "keywords": [],
   "author": "",
