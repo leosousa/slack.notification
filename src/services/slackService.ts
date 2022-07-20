@@ -49,7 +49,8 @@ class SlackService {
     }
 
     _getIntermediador(intermediador: any) {
-        if (!intermediador) {
+        console.log('intermediador: ', intermediador);
+        if (intermediador === undefined || intermediador == null) {
             return '-';
         }
         
@@ -73,7 +74,7 @@ class SlackService {
             return '-'
         }
 
-        return "https://raw.githubusercontent.com/leosousa/slack-notification-api/d75c0f484b16a3830520ad15d21d77093be0df7e/api/resources/" + canalEncontrado[0].url
+        return "https://raw.githubusercontent.com/leosousa/slack.notification/d0d234c05ff3ead526662011c8d571643be3eb86/src/resources/images/" + canalEncontrado[0].url
     }
     
 }
