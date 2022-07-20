@@ -35,4 +35,4 @@ const config = configService_1.configService.getById(configEnum_1.configEnum.CRO
         console.log("*******************************************************\n\n\n\n");
     }));
 });
-app.listen(1313);
+app.listen(process.env.PORT || 3000);

@@ -109,7 +109,7 @@ const webhookService = {
 
             // Pause utilizado para atualização do canal do Slack item a item, para evitar que o pedido não
             // apareça no canal devido a quantidade de mensagens enviadas simultaneamente
-            await timeSleep();
+            // await timeSleep();
         }
 
         return registeredWebhooks;
