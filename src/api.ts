@@ -15,6 +15,6 @@ app.use((request: Request, response: Response, next: NextFunction) => {
 app.use(routes);
 app.use(ResponseError);
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log('Servidor iniciado');
 });

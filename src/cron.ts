@@ -25,4 +25,4 @@ const config = configService.getById(configEnum.CRON_EXECUTION_TIME).then(config
     });
 });
 
-app.listen(1313);
+app.listen(process.env.PORT || 3000);
