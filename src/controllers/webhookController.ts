@@ -4,7 +4,7 @@ import { webhookService } from "../services/webhookService";
 const webhookController = {
     list: async (request: Request, response: Response) => {
         const webhooks = await webhookService.list();
-        console.log('webhooks: ', webhooks);
+        // console.log('webhooks: ', webhooks);
 
         if (!webhooks || webhooks.length <= 0) {
             return response.status(404).json({

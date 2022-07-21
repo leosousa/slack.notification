@@ -30,6 +30,8 @@ class SlackService {
                   { type: 'mrkdwn', text: '>*Valor total*\n>' + dataJson.pedido.totalvenda + "\n" },
                   { type: 'mrkdwn', text: '>*Valor produtos*\n>' + dataJson.pedido.totalprodutos + "\n>" },
                   { type: 'mrkdwn', text: '>*Valor frete*\n>' + dataJson.pedido.valorfrete + "\n" },
+                  { type: 'mrkdwn', text: '>*Desconto*\n>' + dataJson.pedido.desconto + "\n" },
+                  { type: 'mrkdwn', text: "\n" },
                   { type: 'mrkdwn', text: '>*Produtos*\n>' + this._getItens(dataJson.pedido.itens) },
                 ],
               }
@@ -49,7 +51,7 @@ class SlackService {
     }
 
     _getIntermediador(intermediador: any) {
-        console.log('intermediador: ', intermediador);
+        // console.log('intermediador: ', intermediador);
         if (intermediador === undefined || intermediador == null) {
             return '-';
         }

@@ -4,7 +4,7 @@ import { configService } from "../services/configService";
 const configController = {
     list: async (request: Request, response: Response) => {
         const configs = await configService.list();
-        console.log('configs: ', configs);
+        // console.log('configs: ', configs);
 
         if (!configs || configs.length <= 0) {
             return response.status(404).json({
