@@ -40,6 +40,22 @@ class SlackService {
           }, { headers: { authorization: `Bearer ${this.slackToken}` } })
     }
 
+    public async sendTest() {
+        return await axios.post(this.slackApiUrl, {
+            channel: this.slackChannelName,
+            blocks: [
+              {
+                type: 'section',
+                text: { type: 'mrkdwn', text: 'Teste Slack!' },
+                fields: [
+                  { type: 'mrkdwn', text: 'Teste de envio de mensagem inicial ao canal\n' },
+
+                ],
+              }
+            ],
+          }, { headers: { authorization: `Bearer ${this.slackToken}` } })
+    }
+
     _getItens(itens: any) {
         let itemsString = '';
         

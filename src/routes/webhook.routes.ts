@@ -6,5 +6,6 @@ const webhookRoutes = Router();
 
 webhookRoutes.get('/', SafeRunner(webhookController.list));
 webhookRoutes.get('/process', SafeRunner(webhookController.process));
+webhookRoutes.get('/test', SafeRunner(webhookController.test));
 
 export { webhookRoutes }

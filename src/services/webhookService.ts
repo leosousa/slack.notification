@@ -113,6 +113,28 @@ const webhookService = {
         }
 
         return registeredWebhooks;
+    },
+    test: async () => {
+        // Lista configurações
+        var configs = await configService.list();
+        if (!configs || configs.length <= 0) {
+            throw new AppError('Config not found', 404);
+        }
+
+        // Lista markeplaces
+        var marketplaces = await marketplaceService.list();
+        if (!marketplaces || marketplaces.length <= 0) {
+            throw new AppError('Marketplaces not found', 404);
+        }
+
+         // Setando configuracoes
+         const slackChannel = configService.filterById(configs, configEnum.SLACK_CHANNEL_NAME);
+         const slackToken = configService.filterById(configs, configEnum.SLACK_TOKEN);
+
+        var slackService = new SlackService(slackChannel!.value, slackToken!.value, marketplaces);
+        var response = await slackService.sendTest();
+
+        return (response.status === 200);
     }
 }
 

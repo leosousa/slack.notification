@@ -36,6 +36,22 @@ const webhookController = {
             data: processedWebhooks,
             message: "Webhooks processados"
         });
+    },
+    test: async (request: Request, response: Response) => {
+        const sendedTest = await webhookService.test();
+
+        if (!sendedTest) {
+            return response.status(400).json({
+                success: false,
+                message: "Teste não enviado"
+            });
+        }
+
+        return response.status(200).json({
+            success: true,
+            data: sendedTest,
+            message: "Teste enviado"
+        });
     }
 }
 
