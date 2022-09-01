@@ -14,7 +14,7 @@ const webhookService_1 = require("../services/webhookService");
 const webhookController = {
     list: (request, response) => __awaiter(void 0, void 0, void 0, function* () {
         const webhooks = yield webhookService_1.webhookService.list();
-        console.log('webhooks: ', webhooks);
+        // console.log('webhooks: ', webhooks);
         if (!webhooks || webhooks.length <= 0) {
             return response.status(404).json({
                 success: true,
@@ -41,6 +41,20 @@ const webhookController = {
             success: true,
             data: processedWebhooks,
             message: "Webhooks processados"
+        });
+    }),
+    test: (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+        const sendedTest = yield webhookService_1.webhookService.test();
+        if (!sendedTest) {
+            return response.status(400).json({
+                success: false,
+                message: "Teste não enviado"
+            });
+        }
+        return response.status(200).json({
+            success: true,
+            data: sendedTest,
+            message: "Teste enviado"
         });
     })
 };

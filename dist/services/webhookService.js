@@ -96,14 +96,38 @@ const webhookService = {
         }
         // Envia para o slack os novos webhooks
         var slackService = new slackService_1.SlackService(slackChannel.value, slackToken.value, marketplaces);
+        var countSleep = 0;
         for (var index = 0; index <= registeredWebhooks.length - 1; index++) {
             var response = yield slackService.sendOrder(registeredWebhooks[index]);
             console.log('response.status: ', response.status);
+            countSleep++;
+            if (countSleep > 30) {
+                yield timeSleep();
+                countSleep = 0;
+            }
             // Pause utilizado para atualização do canal do Slack item a item, para evitar que o pedido não
             // apareça no canal devido a quantidade de mensagens enviadas simultaneamente
             // await timeSleep();
         }
         return registeredWebhooks;
+    }),
+    test: () => __awaiter(void 0, void 0, void 0, function* () {
+        // Lista configurações
+        var configs = yield configService_1.configService.list();
+        if (!configs || configs.length <= 0) {
+            throw new appError_1.AppError('Config not found', 404);
+        }
+        // Lista markeplaces
+        var marketplaces = yield marketplaceService_1.marketplaceService.list();
+        if (!marketplaces || marketplaces.length <= 0) {
+            throw new appError_1.AppError('Marketplaces not found', 404);
+        }
+        // Setando configuracoes
+        const slackChannel = configService_1.configService.filterById(configs, configEnum_1.configEnum.SLACK_CHANNEL_NAME);
+        const slackToken = configService_1.configService.filterById(configs, configEnum_1.configEnum.SLACK_TOKEN);
+        var slackService = new slackService_1.SlackService(slackChannel.value, slackToken.value, marketplaces);
+        var response = yield slackService.sendTest();
+        return (response.status === 200);
     })
 };
 exports.webhookService = webhookService;

@@ -14,7 +14,7 @@ const configService_1 = require("../services/configService");
 const configController = {
     list: (request, response) => __awaiter(void 0, void 0, void 0, function* () {
         const configs = yield configService_1.configService.list();
-        console.log('configs: ', configs);
+        // console.log('configs: ', configs);
         if (!configs || configs.length <= 0) {
             return response.status(404).json({
                 success: true,

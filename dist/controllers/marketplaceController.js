@@ -14,7 +14,7 @@ const marketplaceService_1 = require("../services/marketplaceService");
 const marketplaceController = {
     list: (request, response) => __awaiter(void 0, void 0, void 0, function* () {
         const marketplaces = yield marketplaceService_1.marketplaceService.list();
-        console.log('marketplaces: ', marketplaces);
+        // console.log('marketplaces: ', marketplaces);
         if (!marketplaces || marketplaces.length <= 0) {
             return response.status(404).json({
                 success: true,

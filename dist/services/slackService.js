@@ -42,11 +42,29 @@ class SlackService {
                             { type: 'mrkdwn', text: '>*Valor total*\n>' + dataJson.pedido.totalvenda + "\n" },
                             { type: 'mrkdwn', text: '>*Valor produtos*\n>' + dataJson.pedido.totalprodutos + "\n>" },
                             { type: 'mrkdwn', text: '>*Valor frete*\n>' + dataJson.pedido.valorfrete + "\n" },
+                            { type: 'mrkdwn', text: '>*Desconto*\n>' + dataJson.pedido.desconto + "\n" },
+                            { type: 'mrkdwn', text: "\n" },
                             { type: 'mrkdwn', text: '>*Produtos*\n>' + this._getItens(dataJson.pedido.itens) },
                         ],
                     }
                 ],
                 // icon_emoji: ':+1:'
+            }, { headers: { authorization: `Bearer ${this.slackToken}` } });
+        });
+    }
+    sendTest() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield axios_1.default.post(this.slackApiUrl, {
+                channel: this.slackChannelName,
+                blocks: [
+                    {
+                        type: 'section',
+                        text: { type: 'mrkdwn', text: 'Teste Slack!' },
+                        fields: [
+                            { type: 'mrkdwn', text: 'Teste de envio de mensagem inicial ao canal\n' },
+                        ],
+                    }
+                ],
             }, { headers: { authorization: `Bearer ${this.slackToken}` } });
         });
     }
@@ -58,7 +76,8 @@ class SlackService {
         return itemsString;
     }
     _getIntermediador(intermediador) {
-        if (!intermediador) {
+        // console.log('intermediador: ', intermediador);
+        if (intermediador === undefined || intermediador == null) {
             return '-';
         }
         return intermediador.nomeUsuario;
@@ -75,7 +94,7 @@ class SlackService {
         if (!canalEncontrado || canalEncontrado.length <= 0) {
             return '-';
         }
-        return "https://raw.githubusercontent.com/leosousa/slack-notification-api/d75c0f484b16a3830520ad15d21d77093be0df7e/api/resources/" + canalEncontrado[0].url;
+        return "https://raw.githubusercontent.com/leosousa/slack.notification/d0d234c05ff3ead526662011c8d571643be3eb86/src/resources/images/" + canalEncontrado[0].url;
     }
 }
 exports.SlackService = SlackService;

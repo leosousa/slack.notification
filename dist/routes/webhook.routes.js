@@ -8,3 +8,4 @@ const webhookRoutes = (0, express_1.Router)();
 exports.webhookRoutes = webhookRoutes;
 webhookRoutes.get('/', (0, safeRunner_1.SafeRunner)(webhookController_1.webhookController.list));
 webhookRoutes.get('/process', (0, safeRunner_1.SafeRunner)(webhookController_1.webhookController.process));
+webhookRoutes.get('/test', (0, safeRunner_1.SafeRunner)(webhookController_1.webhookController.test));
