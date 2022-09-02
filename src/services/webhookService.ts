@@ -103,21 +103,15 @@ const webhookService = {
 
         // Envia para o slack os novos webhooks
         var slackService = new SlackService(slackChannel!.value, slackToken!.value, marketplaces);
-        var countSleep = 0;
+
         for (var index = 0; index <= registeredWebhooks.length-1; index++) {
             var response = await slackService.sendOrder(registeredWebhooks[index]);
             console.log('response.status: ', response.status);
 
-            countSleep++;
-
-            if (countSleep > 2) {
-                await timeSleep();
-                countSleep = 0;
-            }
-
             // Pause utilizado para atualização do canal do Slack item a item, para evitar que o pedido não
-            // apareça no canal devido a quantidade de mensagens enviadas simultaneamente
-            // await timeSleep();
+            // apareça no canal devido a quantidade de mensagens enviadas simultaneamente.
+            // Permitida 1 mensagem por segundo
+            await timeSleep();
         }
 
         return registeredWebhooks;
@@ -148,7 +142,7 @@ const webhookService = {
 
 async function timeSleep() {
     console.log("inicio de pausa");
-    await sleep(1000);
+    await sleep(999);
     console.log("fim de pausa");
 }
 
